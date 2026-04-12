@@ -18,4 +18,4 @@ db = SQLAlchemy(app)
 class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    task = db.Column(db.String(255), nul
+   task = db.Column(db.String(255), nullable=False)
