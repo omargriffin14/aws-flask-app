@@ -3,3 +3,4 @@ flask-sqlalchemy
 pymysql
 cryptography
 gunicorn
+boto3
