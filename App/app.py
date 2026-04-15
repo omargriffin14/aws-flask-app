@@ -2,13 +2,24 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import time
 import os
+import boto3
+import json
 
 app = Flask(__name__)
 
-DB_USER = os.environ.get('DB_USER', 'admin')
-DB_PASSWORD = os.environ.get('DB_PASSWORD')
-DB_HOST = os.environ.get('DB_HOST')
-DB_NAME = os.environ.get('DB_NAME', 'flaskdb')
+def get_secret():
+    secret_name = "flask/db-credentials"
+    region_name = "us-east-1"
+    client = boto3.client('secretsmanager', region_name=region_name)
+    response = client.get_secret_value(SecretId=secret_name)
+    return json.loads(response['SecretString'])
+
+secrets = get_secret()
+
+DB_USER = secrets['DB_USER']
+DB_PASSWORD = secrets['DB_PASSWORD']
+DB_HOST = secrets['DB_HOST']
+DB_NAME = secrets['DB_NAME']
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:3306/{DB_NAME}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
