@@ -39,7 +39,7 @@ Internet
 Application Load Balancer (flask-alb)
     │  Port 80 → Port 5000
     ▼
-EC2 t2.micro - Amazon Linux 2023 (Public Subnet 10.0.1.0/24)
+EC2 t3.micro - Amazon Linux 2023 (Public Subnet 10.0.1.0/24)
     │  Docker container running Flask + Gunicorn
     │
     ├──→ AWS Secrets Manager (DB credentials)
@@ -82,7 +82,7 @@ GitHub → GitHub Actions → SSH → EC2 → Docker rebuild
 | Service | Purpose |
 |---|---|
 | VPC | Isolated network with public and private subnets |
-| EC2 (t2.micro) | Hosts the Docker container running the Flask app |
+| EC2 (t3.micro) | Hosts the Docker container running the Flask app |
 | RDS MySQL (db.t3.micro) | Managed relational database in a private subnet |
 | Application Load Balancer | Distributes internet traffic to EC2 on port 5000 |
 | S3 | Stores static assets (CSS) |
@@ -154,7 +154,7 @@ aws-flask-app/
 ### EC2
 
 - AMI: Amazon Linux 2023
-- Instance type: t2.micro (free tier)
+- Instance type: t3.micro (free tier)
 - Subnet: flask-public-subnet
 - Auto-assign public IP: enabled
 - Elastic IP attached for stable addressing
