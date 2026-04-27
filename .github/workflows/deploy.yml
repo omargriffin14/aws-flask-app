@@ -27,5 +27,6 @@ jobs:
             docker build -t flask-app .
             docker run -d \
               --name flask-container \
+              --restart always \
               -p 5000:5000 \
               flask-app
