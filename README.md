@@ -2,7 +2,7 @@
 
 A production-grade two-tier web application deployed on AWS, featuring a containerized Flask backend, managed MySQL database, automated CI/CD pipeline, CDN-served static assets, and full observability. Built as a cloud engineering portfolio project demonstrating real-world AWS architecture patterns.
 
-**Live URL:** `http://flask-alb-1442848183.us-east-1.elb.amazonaws.com`
+**URL (Not Live):** `http://flask-alb-1442848183.us-east-1.elb.amazonaws.com`
 
 ---
 
